@@ -14,6 +14,7 @@ resolvers ++= Seq(
 libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.0"
 libraryDependencies += "be.doeraene" %%% "scalajs-jquery" % "0.9.0"
 libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0" % "test"
+libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.2"
 testFrameworks += new TestFramework("utest.runner.Framework")
 
 enablePlugins(ScalaJSPlugin)

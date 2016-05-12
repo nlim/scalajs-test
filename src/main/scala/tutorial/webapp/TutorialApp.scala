@@ -5,6 +5,14 @@ import org.scalajs.dom
 import dom.document
 import scala.scalajs.js.annotation.JSExport
 import org.scalajs.jquery.jQuery
+import scala.language.higherKinds
+import scala.language.postfixOps
+import scala.concurrent.duration._
+import scalaz.concurrent.Strategy
+import scalaz.concurrent.Task
+import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
+
+
 
 object TutorialApp extends JSApp {
   def main(): Unit = {
@@ -27,8 +35,15 @@ object TutorialApp extends JSApp {
     jQuery("body").append("<p>" + message + "</p>")
   }
 
-  @JSExport
   def addClickedMessage(): Unit = {
     addToBody("You clicked the button!")
+  }
+
+  case class Person(name: String, age: Int)
+
+  import scalaz._, Scalaz._
+
+  def runScalaz(list: List[Person])(f: Person => Option[Person]): Option[List[Person]] = {
+    Traverse[List].traverse(list)(f)
   }
 }
